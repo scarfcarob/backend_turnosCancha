@@ -1,0 +1,1 @@
+Este Aplicacion permite a una persona (usuario/admin) registrarse en la BD (bd_alquilercanchas) para reservar canchas disponibles (cancha futbol, basket, tenis), teniendo en cuenta horarios a traves de un pago (monto, metodo de pago: efectivo, tarjeta, transferencia).
