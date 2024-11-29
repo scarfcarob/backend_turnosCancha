@@ -1,20 +1,33 @@
 
-import 'dotenv/config';                                   // Carga las variables de entorno desde .env
-import { createPool } from 'mysql2/promise';
+import mysql from "mysql2/promise";
+import dotenv from "dotenv";
 
-// Configuración de conexión a la base de datos
-const configuracion = {
-    host: process.env.DB_HOST || '127.0.0.1',            // Dirección del host de la base de datos
-    user: process.env.DB_USER || 'root',                 // Usuario de la base de datos
-    password: process.env.DB_PASSWORD || '12345',         // Contraseña de la base de datos
-    database: process.env.DB_NAME || 'bd_alquilercanchas', // Nombre de la base de datos
-    port: process.env.DB_PORT || 3306,                      // Puerto de la base de datos
-    waitForConnections: true,                               // Opciones adicionales
+dotenv.config();
+
+const pool = mysql.createPool({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "12345",
+    database: process.env.DB_NAME || "bd_alquilercanchas",
+    port: process.env.DB_PORT || 3306,
+    waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+});
+
+// Función para probar la conexión
+
+const testConnection = async () => {
+    try {
+        const connection = await pool.getConnection();
+        console.log("Conexión a la base de datos exitosa");
+        connection.release();
+    } catch (error) {
+        console.error("Error al conectar a la base de datos:", error);
+    }
 };
 
-// Crear la conexión a la base de datos
-const db = createPool(configuracion);
+// Llamar a la función de prueba
+testConnection();
 
-export default db;
+export default pool;

@@ -1,14 +1,14 @@
 
 
 import { Router } from 'express';
-import CanchaController from '../controller/canchasController.js';
+import c from '../controller/canchasController.js';
 
 const router = Router();
+router.get('/', c.getAll);
 
-router.get('/', CanchaController.getAll);
-router.get('/:id', CanchaController.getById);
-router.post('/', CanchaController.create);
-router.put('/:id', CanchaController.update);
-router.delete('/:id', CanchaController.delete);
+router.get('/:id', c.getById);
+router.post('/', c.create);
+router.put('/:id', c.update);
+router.delete('/:id', c.delete);
 
 export default router;

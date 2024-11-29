@@ -1,10 +1,6 @@
 
-
-
-//import express from 'express';
-
 import { Router } from 'express';
-import PagoController from '../controller/pagosController,js';
+import PagoController from '../controller/pagosController.js';
 
 
 const router = Router();

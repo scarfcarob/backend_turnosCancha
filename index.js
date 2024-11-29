@@ -1,5 +1,6 @@
 
-import app from './app.js';
+import app from './src/app.js';
+
 
 // Puerto del servidor
 const PORT = process.env.PORT || 3000;
@@ -11,6 +12,28 @@ app.listen(PORT, () => {
 
 
 export default app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -28,15 +51,8 @@ export default app;
 //});
 
 
-// Puerto del servidor
-//const PORT = process.env.PORT || 3000;
 
-// Iniciar el servidor
-//app.listen(PORT, () => {
-    //console.log(`Servidor corriendo en el puerto ${PORT}`);
-//});
 
-//---------------------------------------------------------
 
 
 

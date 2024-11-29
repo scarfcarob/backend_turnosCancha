@@ -1,5 +1,5 @@
 
-import Usuario from '../model/usuarios.js';    //arregla los espacios, me parece que estan todos mal!!!1
+import Usuario from '../model/usuarios.js';    
 
 const UsuarioController = {
     async getAll(req, res) {
@@ -57,3 +57,17 @@ const UsuarioController = {
 
 export default UsuarioController;
 
+
+//--------------------m:---------------------------------//
+
+export const register = async (req, res) => {
+    const { username, email, password } = req.body;
+
+    try {
+        // Lógica para crear el usuario
+        res.status(201).json({ message: "Usuario registrado exitosamente" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error al registrar el usuario" });
+    }
+};

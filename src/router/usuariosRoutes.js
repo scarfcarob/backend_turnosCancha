@@ -1,36 +1,26 @@
-//const express = require("express"); 
-//const router = express.Router(); 
+import { Router } from "express";
+import { body } from "express-validator";
 
-//const usuariosController = require('../controller/usuariosController'); 
+import { register } from '../controller/usuariosController.js'; // op1: exportación nombrada
+//import usuarioController from '../controller/usuariosController.js'; //op2 importar objeto completo
 
-
-
-// en el router interpreto el trafico y le digo que vayan a su 
-//correspondiente funcion
-
-
-//router conoce al controlador. y cada vez que apreto ex: getAll me lleva a controladores
-
-
-//endpoint para listar aviones, 
-//router.get('/',avionController.getAll);
-
-//endpoint para crear aviones 
-//router.post('/ create', avionController.create); 
-
-//enpoint para modificar aviones 
-//router.put('/update'.......)
-
-
-import { Router } from 'express';
-import UsuarioController from '../controller/usuariosController.js';
+import validateFields from "../middleware/validationMiddleware.js";
 
 const router = Router();
 
-router.get('/', UsuarioController.getAll);
-router.get('/:id', UsuarioController.getById);
-router.post('/', UsuarioController.create);
-router.put('/:id', UsuarioController.update);
-router.delete('/:id', UsuarioController.delete);
+// Validación en una ruta de creación de usuarios
+
+router.post(
+    "/register",
+    [
+    body("username").notEmpty().withMessage("El nombre de usuario es obligatorio"),
+    body("email").isEmail().withMessage("Debe ser un email válido"),
+    body("password")
+        .isLength({ min: 6 })
+        .withMessage("La contraseña debe tener al menos 6 caracteres"),
+    ],
+    validateFields,
+    register                       // llama a la funcion register
+);
 
 export default router;

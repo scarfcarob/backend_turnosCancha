@@ -1,7 +1,6 @@
 
 import Pago from '../model/pagos.js';
 
-//const pagoRoutes = require('express').Router();
 
 const PagoController = {
   async getAll(req, res) {

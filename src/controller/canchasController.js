@@ -1,12 +1,12 @@
 
-import Cancha from '../model/canchas.js';
+import m from '../model/canchas.js';
 
 //const app = express();
 
 const CanchaController = {
   async getAll(req, res) {
     try {
-      const canchas = await Cancha.getAll();
+      const canchas = await m.getAll();
       res.json(canchas);
     } catch (error) {
       res.status(500).json({ error: 'Error al obtener las canchas' });
@@ -16,7 +16,7 @@ const CanchaController = {
   async getById(req, res) {
     try {
       const { id } = req.params;
-      const cancha = await Cancha.getById(id);
+      const cancha = await m.getById(id);
       if (!cancha) return res.status(404).json({ error: 'Cancha no encontrada' });
       res.json(cancha);
     } catch (error) {
@@ -27,7 +27,7 @@ const CanchaController = {
   async create(req, res) {
     try {
       const { nombre, ubicacion, precio } = req.body;
-      const id = await Cancha.create({ nombre, ubicacion, precio });
+      const id = await m.create({ nombre, ubicacion, precio });
       res.status(201).json({ id });
     } catch (error) {
       res.status(500).json({ error: 'Error al crear la cancha' });
@@ -37,7 +37,7 @@ const CanchaController = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const actualizado = await Cancha.update(id, req.body);
+      const actualizado = await m.update(id, req.body);
       if (!actualizado) return res.status(404).json({ error: 'Cancha no encontrada' });
       res.json({ message: 'Cancha actualizada correctamente' });
     } catch (error) {
@@ -48,7 +48,7 @@ const CanchaController = {
   async delete(req, res) {
     try {
       const { id } = req.params;
-      const eliminado = await Cancha.delete(id);
+      const eliminado = await m.delete(id);
       if (!eliminado) return res.status(404).json({ error: 'Cancha no encontrada' });
       res.json({ message: 'Cancha eliminada correctamente' });
     } catch (error) {
